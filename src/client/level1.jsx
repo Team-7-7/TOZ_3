@@ -6,7 +6,6 @@ import eventsCenter from './EventsCenter.jsx' // this allows communication betwe
 
 import { PauseScene } from "./pauseScene.jsx";
 
-import { store } from "./store"; // brings in redux store
 
 export class Level1 extends Phaser.Scene {
     constructor(){
@@ -27,34 +26,18 @@ export class Level1 extends Phaser.Scene {
 
   preload ()
   {
-    const state = store.getState() // this brings in the state from redux
-    console.log(state, "in preload")
-    console.log('this is the character class: ', state.userCharacter.character.character_class)
-    
-    
-    
-    
-    
       this.load.image('floor', '/assets/levelAssets/floor.png');
       this.load.image('tiles', '/assets/levelAssets/25x25Tiles.png');
       this.load.tilemapTiledJSON('map', '/assets/levelAssets/level1.json');
   
   
       // the three classes sprites load here
-      switch(state.userCharacter.character.character_class){
-      case "warrior":
-          console.log('loading the warrior');
-          this.load.spritesheet('playerSprite', 'assets/levelAssets/knight78x60.png', { frameWidth: 78, frameHeight: 60 });
-          break;
-      case "mage":
-          console.log('loading the mage');
-          this.load.spritesheet('playerSprite', 'assets/levelAssets/mage78x60.png', { frameWidth: 78, frameHeight: 60 });
-          break;
-      case "rogue":
-          console.log('loading the rogue');
-          this.load.spritesheet('playerSprite', 'assets/levelAssets/rogue78x60.png', { frameWidth: 78, frameHeight: 60 });
-          break;
-      };
+      // ************************** needs logic to choose sprite based on character sheet ***********************
+      // this.load.spritesheet('playerSprite', 'assets/knight78x60.png', { frameWidth: 78, frameHeight: 60 });
+      this.load.spritesheet('playerSprite', 'assets/levelAssets/mage78x60.png', { frameWidth: 78, frameHeight: 60 });
+      // this.load.spritesheet('playerSprite', 'assets/rogue78x60.png', { frameWidth: 78, frameHeight: 60 });
+
+      
       
       this.load.spritesheet('chest', 'assets/levelAssets/chest_sprite.png', {frameWidth: 32, frameHeight: 32 })
       this.load.spritesheet('goldCoin', 'assets/levelAssets/goldCoin.png', {frameWidth: 40, frameHeight: 40})

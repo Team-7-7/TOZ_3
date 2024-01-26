@@ -1,4 +1,5 @@
 import {CST} from "./CST.jsx";
+import "../loginform.css";
 
 export class Menu extends Phaser.Scene {
     constructor(){
@@ -9,8 +10,7 @@ export class Menu extends Phaser.Scene {
     }
 
     init(data){
-        console.log(data);
-        console.log("I GOT IT");
+        this.message = data.message;
     }
 
     preload(){ 
@@ -32,6 +32,10 @@ export class Menu extends Phaser.Scene {
         
         
         bg1.setPosition(this.scale.width / 2, this.scale.height / 2);
+
+        this.text = this.add.text(0, 0, this.message, {fontFamily:'p-script', fontSize: '32px', color: 'white'});
+
+
 
         this.input.keyboard.on('keydown-ENTER', () => {
             this.scene.start(CST.SCENES.LEVEL1);
